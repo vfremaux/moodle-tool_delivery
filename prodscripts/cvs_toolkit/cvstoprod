@@ -1,0 +1,11 @@
+#!/bin/bash
+
+. config
+
+if [ -e $CVSDIR ]
+then
+mv ${BASEDIR} ${SAVEDIR}
+mv ${CVSDIR} ${BASEDIR}
+else
+echo "No CVS dir. Nothing done."
+fi

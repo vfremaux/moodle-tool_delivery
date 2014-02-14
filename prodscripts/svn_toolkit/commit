@@ -1,0 +1,15 @@
+#!/bin/bash
+
+. config
+
+if [ -e $SVNDIR ]
+then
+BASEDIR=$SVNDIR
+fi
+
+if [ $1 ] 
+then
+   svn commit -m "backport from production" ${BASEDIR}/${1}
+else
+   svn commit -m "backport from production" ${BASEDIR}
+fi

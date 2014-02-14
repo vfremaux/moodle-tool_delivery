@@ -1,0 +1,20 @@
+#!/bin/bash
+
+. config
+
+if [ ! -e $SVNDIR ]
+then
+   echo "No SVN volume in place. Please goback first."
+   exit
+fi
+
+if [ $1 ] 
+then
+   		svn update ${SVNDIR}/${1} --username ${SVNUSER} --password ${SVNPASS} --non-interactive --trust-server-cert
+else
+   		svn update ${SVNDIR} --username ${SVNUSER} --password ${SVNPASS} --non-interactive --trust-server-cert
+fi
+
+#chgrp -R ${FILESERVGROUP} $SVNDIR
+#chmod -R g+w $SVNDIR
+#chmod -R ugo+r $SVNDIR

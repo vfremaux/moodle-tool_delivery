@@ -1,0 +1,17 @@
+#!/bin/bash
+
+. config
+
+cvs -d :pserver:$CVSUSER@$CVSHOST:/$CVSREPO login
+
+if [ $BRANCH ]
+then
+cvs -d :pserver:$CVSUSER@$CVSHOST:/$CVSREPO co -d $BASEDIR -r $BRANCH -P $MODULE
+else
+cvs -d :pserver:$CVSUSER@$CVSHOST:/$CVSREPO co -d $BASEDIR -P $MODULE
+fi
+
+cvs -d :pserver:$CVSUSER@$CVSHOST:/$CVSREPO logout
+chown -R ${APACHESERVUSER}:${APACHESERVGROUP} $BASEDIR
+chmod -R g+w $BASEDIR
+chmod -R ugo+r $BASEDIR

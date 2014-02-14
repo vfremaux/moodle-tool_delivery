@@ -1,0 +1,21 @@
+#!/bin/bash
+
+. config
+
+if [ -e $CVSDIR ]
+then
+   echo "A CVS dir is in place. Please cvstoprod first."
+   exit
+fi
+
+cvs -d :pserver:${CVSUSER}@${CVSHOST}:/${CVSREPO} login
+if [ $1 ] 
+then
+   cvs -d :pserver:${CVSUSER}@${CVSHOST}:/${CVSREPO} update -C -d ${BASEDIR}/${1}
+else
+   cvs -d :pserver:${CVSUSER}@${CVSHOST}:/${CVSREPO} update -C -d ${BASEDIR}
+fi
+cvs -d :pserver:${CVSUSER}@${CVSHOST}:/${CVSREPO} logout
+chown -R ${APACHESERVUSER}:${APACHESERVGROUP} $BASEDIR
+chmod -R g+w $BASEDIR
+chmod -R ugo+r $BASEDIR

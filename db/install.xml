@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="admin/tool/delivery/db" VERSION="20131101" COMMENT="XMLDB file for Moodle delivery tool"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="tool_delivery_session" COMMENT="each record is one session of delivery" NEXT="tool_delivery_session_log">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" NEXT="title" />
+        <FIELD NAME="title" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" NEXT="description" PREVIOUS="id" />
+        <FIELD NAME="description" TYPE="text" NOTNULL="false" SEQUENCE="false" NEXT="impact" PREVIOUS="title" />
+        <FIELD NAME="impact" TYPE="text" NOTNULL="false" SEQUENCE="false" NEXT="outputstate" PREVIOUS="description" />
+        <FIELD NAME="outputstate" TYPE="text" NOTNULL="false" SEQUENCE="false" NEXT="followup" PREVIOUS="impact" />
+        <FIELD NAME="followup" TYPE="text" NOTNULL="false" SEQUENCE="false" NEXT="userid" PREVIOUS="outputstate" />
+        <FIELD NAME="userid" TYPE="int" LENGTH="11" NOTNULL="true" DEFAULT="0" SEQUENCE="false" NEXT="timecreated" PREVIOUS="followup" />
+        <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" NEXT="timemodified" PREVIOUS="userid" />
+        <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" NEXT="timeclosed" PREVIOUS="timecreated" />
+        <FIELD NAME="timeclosed" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" PREVIOUS="timemodified" NEXT="sent" />
+        <FIELD NAME="sent" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0" SEQUENCE="false" PREVIOUS="timeclosed" />
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id" />
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="tool_delivery_session_log" COMMENT="each record is one session of delivery" PREVIOUS="tool_delivery_session">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" NEXT="sessionid" />
+        <FIELD NAME="sessionid" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" NEXT="command" PREVIOUS="id" />
+        <FIELD NAME="command" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" NEXT="component" PREVIOUS="sessionid" />
+        <FIELD NAME="component" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" NEXT="comment" PREVIOUS="command" />
+        <FIELD NAME="comment" TYPE="text" LENGTH="small" NOTNULL="false" SEQUENCE="false" NEXT="timeupdated" PREVIOUS="component" />
+        <FIELD NAME="timeupdated" TYPE="int" LENGTH="11" NOTNULL="true" SEQUENCE="false" PREVIOUS="comment" />
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+    </TABLE>
+	</TABLES>
+</XMLDB>

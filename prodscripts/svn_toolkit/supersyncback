@@ -1,0 +1,13 @@
+#!/bin/bash
+
+. config
+
+if [ $1 ] 
+then
+echo local copy
+cp -R ${BASEDIR}/$1/* ${BASEDIR}-SAVE/$1
+cp -R ${BASEDIR}/$1/* ${BASEDIR}-SUPERSAVE/$1
+else
+cp -R ${BASEDIR}/* ${BASEDIR}-SAVE
+cp -R ${BASEDIR}/* ${BASEDIR}-SUPERSAVE
+fi

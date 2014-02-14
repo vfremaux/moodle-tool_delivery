@@ -1,0 +1,11 @@
+#!/bin/bash
+
+. config
+
+if [ -e $SVNDIR ]
+then
+mv ${BASEDIR} ${SAVEDIR}
+mv ${SVNDIR} ${BASEDIR}
+else
+echo "No SVN dir. Nothing done."
+fi

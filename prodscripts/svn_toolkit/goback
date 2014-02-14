@@ -1,0 +1,11 @@
+#!/bin/bash
+
+. config
+
+if [ -e ${SAVEDIR} ] 
+then
+mv ${BASEDIR} ${SVNDIR}
+mv ${SAVEDIR} ${BASEDIR}
+else
+echo "Nothing done. No save"
+fi

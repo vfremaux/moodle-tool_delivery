@@ -1,0 +1,1 @@
+Delivery session closed on <%%SITE%%>

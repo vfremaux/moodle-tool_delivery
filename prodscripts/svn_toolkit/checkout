@@ -1,0 +1,12 @@
+#!/bin/bash
+
+. config
+
+if [ $BRANCH ]
+then
+   svn co --username ${SVNUSER} --password ${SVNPASS} ${SVNROOT}/${SVNREPO}/${MODULE}/branches/${BRANCH} ${REALBASEDIR} --non-interactive --trust-server-cert
+else
+   svn co --username ${SVNUSER} --password ${SVNPASS} ${SVNROOT}/${SVNREPO}/${MODULE}/trunk  ${REALBASEDIR} --non-interactive --trust-server-cert
+fi
+
+chmod -R g+rws,u+rw,o+r $REALBASEDIR

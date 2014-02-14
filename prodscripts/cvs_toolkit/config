@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# The dir of the real running alias
+BASEDIR=moodleroot
+
+# The CVS working name
+CVSDIR=moodleroot-CVS
+
+# The name for the SAVE copy
+SAVEDIR=moodleroot-SAVE
+
+# The name for the SUPERSAVE copy
+# The SUPERSAVE copy allows making long term super secured copy
+SUPERSAVEDIR=moodleroot-SUPERSAVE
+
+# The name for the CVSD reading user
+# You will need to know the remote accepted password for that user
+CVSUSER=cvuser
+
+# CVS Repository information. Not used ofr all commands 
+CVSREPO=mdl19-reponame
+CVSHOST=r18624.ovh.net
+MODULE=moodlemodule
+BRANCH=moodlebranch
+
+# Apache ownership
+APACHESERVUSER=httpadm
+APACHESERVGROUP=httpadm

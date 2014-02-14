@@ -1,0 +1,21 @@
+#!/bin/bash
+
+. config
+
+if [ ! -e $CVSDIR ]
+then
+   echo "No CVS volume in place. Please goback first."
+   exit
+fi
+
+cvs -d :pserver:${CVSUSER}@${CVSHOST}:/${CVSREPO} login
+if [ $1 ] 
+then
+   cvs -d :pserver:${CVSUSER}@${CVSHOST}:/${CVSREPO} update -C -d ${CVSDIR}/${1}
+else
+   cvs -d :pserver:${CVSUSER}@${CVSHOST}:/${CVSREPO} update -C -d ${CVSDIR}
+fi
+cvs -d :pserver:${CVSUSER}@${CVSHOST}:/${CVSREPO} logout
+chown -R ${APACHESERVUSER}:${APACHESERVGROUP} $CVSDIR
+chmod -R g+w $CVSDIR
+chmod -R ugo+r $CVSDIR

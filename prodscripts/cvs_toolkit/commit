@@ -1,0 +1,17 @@
+#!/bin/bash
+
+. config
+
+if [ -e $CVSDIR ]
+then
+BASEDIR=$CVSDIR
+fi
+
+cvs -d :pserver:${CVSUSER}@${CVSHOST}:/${CVSREPO} login
+if [ $1 ] 
+then
+   cvs -d :pserver:${CVSUSER}@${CVSHOST}:/${CVSREPO} commit -R -m "backport from production" ${BASEDIR}/${1}
+else
+   cvs -d :pserver:${CVSUSER}@${CVSHOST}:/${CVSREPO} commit -R -m "backport from production" ${BASEDIR}
+fi
+cvs -d :pserver:${CVSUSER}@${CVSHOST}:/${CVSREPO} logout

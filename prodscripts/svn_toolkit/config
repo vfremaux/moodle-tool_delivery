@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# Real physical dir of the code (absolute path)
+REALBASEDIR=
+
+# The dir of the real running alias
+BASEDIR=moodle
+
+# The SVN working name
+SVNDIR=${BASEDIR}-SVN
+
+# The name for the SAVE copy
+SAVEDIR=${BASEDIR}-SAVE
+
+# The name for the SUPERSAVE copy
+# The SUPERSAVE copy allows making long term super secured copy
+SUPERSAVEDIR=${BASEDIR}-SUPERSAVE
+
+# The name for the CVSD reading user
+# You will need to know the remote accepted password for that user
+SVNUSER=svnuser
+SVNPASS=svnpassword
+
+# CVS Repository information. Not used for all commands // Svn running in webdav mode
+SVNREPO=mdl-svnrepo
+SVNROOT=http://www.mysvn.me/svn
+MODULE=WWW-MYMOODLE-PHP
+BRANCH=MYBRANCH
+
+# Apache ownership
+FILESERVUSER=moodleadm
+FILESERVGROUP=root

@@ -1,0 +1,22 @@
+.deliverystate{
+	font-size:20px;
+	text-align:center;
+	font-weight:bold;
+}
+
+.deliverystate.delivery{
+	background-color:#80ff80;
+}
+
+.deliverystate.production{
+	background-color:#FF9A4F;
+}
+
+.sudosignal,
+.sudosignal *{
+	background-color:#FFA94A !important;
+	font-weight:bolder;
+	font-size:14px;
+	color:#000000;
+	text-align:center;
+}
