@@ -33,9 +33,11 @@ class Delivery_Form extends moodleform{
 
 		$mform->addElement('header', 'h2', '');
 		$mform->addElement('radio', $prodcmd, '', get_string('goback', 'tool_delivery'), 'goback', $prodoptions);
+		$mform->setExpanded('h2');
 
 		$mform->addElement('header', 'h3', '');
 		$mform->addElement('radio', $delivcmd, '', get_string('update', 'tool_delivery'), 'update', $deliveryoptions);
+		$mform->setExpanded('h3');
 		
 		$mform->addElement('text', 'componentpath', get_string('componentpath', 'tool_delivery'), array('size' => 40));
 		$mform->setType('componentpath', PARAM_PATH);
@@ -45,6 +47,7 @@ class Delivery_Form extends moodleform{
 
 		$mform->addElement('header', 'h4', '');
 		$mform->addElement('radio', $delivcmd, '', get_string('backtoprod', 'tool_delivery'), 'backtoprod', $deliveryoptions);
+		$mform->setExpanded('h4');
 		
 		$this->add_action_buttons(true, get_string('run', 'tool_delivery'));
 	}
