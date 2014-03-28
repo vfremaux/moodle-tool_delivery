@@ -61,6 +61,8 @@ class admin_setting_configimage extends admin_setting {
     public function write_setting($data) {
     	global $USER;
 
+        if (!$USER->id) return;
+
         // $data is a string
         $validated = $this->validate($data);
         if ($validated !== true) {
