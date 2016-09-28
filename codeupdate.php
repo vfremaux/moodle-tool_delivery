@@ -14,9 +14,18 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
+/**
+ * @package    tool_delivery
+ * @category   tool
+ * @author     Valery Fremaux <valery.fremaux@gmail.com>
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
 require('../../../config.php');
 
 $context = context_system::instance();
+
+// Security.
 
 require_login();
 require_capability('moodle/site:config', $context);
@@ -53,7 +62,11 @@ if ($mform->is_cancelled()) {
 
         switch ($data->cmd) {
             case 'syncback':
-                $args = escapeshellarg($data->synccomponentpath);
+                if (!empty($data->synccomponentpath)) {
+                    $args = escapeshellarg($data->synccomponentpath);
+                } else {
+                    $args = '';
+                }
                 $reportargs = $data->synccomponentpath;
                 $deliverycmdfile = $config->prodscriptpath.'/'.$deliverypathext.'syncback';
                 $deliverycmd = $sudo.$config->prodscriptpath.'/'.$deliverypathext."syncback $args";
@@ -61,7 +74,11 @@ if ($mform->is_cancelled()) {
                 break;
 
             case 'supersyncback':
-                $args = escapeshellarg($data->synccomponentpath);
+                if (!empty($data->synccomponentpath)) {
+                    $args = escapeshellarg($data->synccomponentpath);
+                } else {
+                    $args = '';
+                }
                 $reportargs = $data->synccomponentpath;
                 $deliverycmdfile = $config->prodscriptpath.'/'.$deliverypathext.'supersyncback';
                 $deliverycmd = $sudo.$config->prodscriptpath.'/'.$deliverypathext."suprsyncback $args";
@@ -76,7 +93,11 @@ if ($mform->is_cancelled()) {
                 break;
 
             case 'update':
-                $args = escapeshellarg($data->componentpath);
+                if (!empty($data->componentpath)) {
+                    $args = escapeshellarg($data->componentpath);
+                } else {
+                    $args = '';
+                }
                 $reportargs = $data->componentpath;
                 $deliverycmdfile = $config->prodscriptpath.'/'.$deliverypathext.'update';
                 $deliverycmd = $sudo.$config->prodscriptpath.'/'.$deliverypathext."update $args";

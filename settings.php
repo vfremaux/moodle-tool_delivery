@@ -14,22 +14,20 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-// settings default init
-$hasconfig = false;
-$hassiteconfig = false;
+defined('MOODLE_INTERNAL') || die;
+
+/**
+ * @package    tool_delivery
+ * @category   tool
+ * @author     Valery Fremaux <valery.fremaux@gmail.com>
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
 if (is_dir($CFG->dirroot.'/local/adminsettings')) {
-    // Integration driven code 
-    if (has_capability('local/adminsettings:nobody', context_system::instance())) {
-        $hasconfig = true;
-        $hassiteconfig = true;
-    } else if (has_capability('moodle/site:config', context_system::instance())) {
-        $hasconfig = true;
-        $hassiteconfig = false;
-    }
+    list($hasconfig, $hassiteconfig, $capability) = local_adminsettings_access();
 } else {
     // Standard Moodle code
-    $hassiteconfig = true;
-    $hasconfig = true;
+    $hasconfig = $hassiteconfig = has_capability('moodle/site:config', context_system::instance());
 }
 
 if ($hassiteconfig) {
@@ -39,34 +37,34 @@ if ($hassiteconfig) {
     if (!isset($CFG->localdeliverydir)) set_config('localdeliverymethod', '');
     if (!isset($CFG->localdeliverysudo)) set_config('localdeliverysudo', 0);
     if (!isset($CFG->localdeliverysudouser)) set_config('localdeliverysudouser', '');
-    
+
     // settings
-    
+
     $temp = new admin_settingpage('delivery', get_string('delivery', 'tool_delivery'));
-    
+
     if (empty($CFG->tooldeliveryenablesessions)){
         $temp->add(new admin_setting_heading('codeupdate', get_string('deliverytools', 'tool_delivery'), "<a href=\"{$CFG->wwwroot}/admin/tool/delivery/codeupdate.php\">".get_string('accesstools', 'tool_delivery').'</a>'));
     } else {
         $temp->add(new admin_setting_heading('codeupdate', get_string('deliverytools', 'tool_delivery'), "<a href=\"{$CFG->wwwroot}/admin/tool/delivery/index.php\">".get_string('accesstools', 'tool_delivery').'</a>'));
     }
-    
+
     $temp->add(new admin_setting_heading('codeupdateoptions', get_string('deliveryoptions', 'tool_delivery'), ''));
-    
+
     $methodoptions = array('cvs' => get_string('cvs', 'tool_delivery'), 'svn' => get_string('svn', 'tool_delivery'));
     $temp->add(new admin_setting_configselect('tool_delivery/method', get_string('tooldeliverymethod', 'tool_delivery'), get_string('configtooldeliverymethod', 'tool_delivery'), 'svn', $methodoptions));
-    
+
     $temp->add(new admin_setting_configtext('tool_delivery/prodscriptpath', get_string('tooldeliveryprodscriptpath', 'tool_delivery'), get_string('configtooldeliveryprodscriptpath', 'tool_delivery'), ''));
     $temp->add(new admin_setting_configtext('tool_delivery/dir', get_string('tooldeliverydir', 'tool_delivery'), get_string('configtooldeliveryprodscriptpath', 'tool_delivery'), ''));
     $temp->add(new admin_setting_configcheckbox('tool_delivery/directtools', get_string('tooldirectdeliverytools', 'tool_delivery'), get_string('configtooldirectdeliverytools', 'tool_delivery'), ''), 0);
-    
+
     $temp->add(new admin_setting_heading('security', get_string('security', 'tool_delivery'), ''));
     $temp->add(new admin_setting_configcheckbox('tool_delivery/sudo', get_string('tooldeliverysudo', 'tool_delivery'), get_string('configtooldeliverysudo', 'tool_delivery'), ''), 0);
     $temp->add(new admin_setting_configtext('tool_delivery/sudouser', get_string('tooldeliverysudouser', 'tool_delivery'), get_string('configtooldeliverysudouser', 'tool_delivery'), ''));
-    
+
     $temp->add(new admin_setting_configcheckbox('tool_delivery/enablesessions', get_string('tooldeliveryenablesessions', 'tool_delivery'), get_string('configtooldeliveryenablesessions', 'tool_delivery'), ''));
-    
+
     $temp->add(new admin_setting_configtextarea('tool_delivery/sessionopenrecipients', get_string('tooldeliverysessionopenrecipients', 'tool_delivery'), get_string('configtooldeliverysessionopenrecipients', 'tool_delivery'), ''));
-    
+
     global $CFG;
     require_once($CFG->dirroot.'/admin/tool/delivery/adminlib.php');
     // $temp->add(new admin_setting_configimage('tool_delivery/reportlogo', get_string('tooldeliveryreportlogo', 'tool_delivery'), get_string('configtooldeliveryreportlogo', 'tool_delivery'), 'tool_delivery'));

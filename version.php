@@ -25,11 +25,12 @@
 
 defined('MOODLE_INTERNAL') || die;
 
-$plugin->version  = 2015032700;
-$plugin->requires = 2015050500;
+$plugin->version  = 2015032701;
+$plugin->requires = 2015111100;
 $plugin->component = 'tool_delivery';
 $plugin->maturity = MATURITY_STABLE;
-$plugin->release = '2.9.0 Build(2015032700)';
+$plugin->release = '3.0.0 Build(2015032701)';
+$plugin->dependencies = array('local_vflibs' => '2015122000');
 
-// Non moodle atributes.
-$plugin->codeincrement = '2.9.0000';
+// Non moodle attributes.
+$plugin->codeincrement = '3.0.0000';
