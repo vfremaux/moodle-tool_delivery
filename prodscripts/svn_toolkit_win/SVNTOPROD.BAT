@@ -1,0 +1,9 @@
+
+START /B /I CONFIG.BAT
+
+IF EXISTS %SVNDIR% (
+    RENAME %BASEDIR% %SAVEDIR%
+    RENAME %SVNDIR% %BASEDIR%
+) ELSE (
+    ECHO "No SVN dir. Nothing done."
+)
