@@ -13,7 +13,6 @@
 * @date 2008/03/03
 * @license http://www.gnu.org/copyleft/gpl.html GNU Public License
 */
-defined('MOODLE_INTERNAL') || die;
 
 /**
 * useful templating functions from an older project of mine, hacked for Moodle

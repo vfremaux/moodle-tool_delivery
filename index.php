@@ -14,13 +14,6 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-/**
- * @package    tool_delivery
- * @category   tool
- * @author     Valery Fremaux <valery.fremaux@gmail.com>
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */
-
 require('../../../config.php');
 
 $systemcontext = context_system::instance();
@@ -28,8 +21,6 @@ $url = new moodle_url('/admin/tool/delivery/index.php');
 
 $action = optional_param('what', '', PARAM_TEXT);
 $sessionid = optional_param('sessionid', '', PARAM_TEXT);
-
-// Security.
 
 require_login();
 require_capability('moodle/site:config', $systemcontext);

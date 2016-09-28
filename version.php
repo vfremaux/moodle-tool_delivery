@@ -19,19 +19,17 @@
  *
  * @package     tool_delivery
  * @category    tool
- * @author      Valery Fremaux <valery.fremaux@gmail.com>
- * @copyright   2016 onwards Valery Fremaux (http://www.mylearningfactory.com)
+ * @copyright   2015 Valery fremaux
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die;
 
 $plugin->version  = 2015032700;
-$plugin->requires = 2014050800;
+$plugin->requires = 2015050500;
 $plugin->component = 'tool_delivery';
 $plugin->maturity = MATURITY_STABLE;
-$plugin->release = '2.7.0 Build(2015032700)';
-$plugin->dependencies = array('local_vflibs' => '2015122000');
+$plugin->release = '2.9.0 Build(2015032700)';
 
-// Non moodle attributes.
-$plugin->codeincrement = '2.7.0000';
+// Non moodle atributes.
+$plugin->codeincrement = '2.9.0000';
