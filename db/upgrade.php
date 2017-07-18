@@ -1,5 +1,4 @@
 <?php
-
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -29,7 +28,7 @@ function xmldb_tool_delivery_upgrade($oldversion) {
 
     $dbman = $DB->get_manager();
 
-	if ($oldversion < 2013111100){
+    if ($oldversion < 2013111100) {
         // Define table tool_delivery_session to be created.
         $table = new xmldb_table('tool_delivery_session');
 
@@ -75,7 +74,7 @@ function xmldb_tool_delivery_upgrade($oldversion) {
 
         // Delivery savepoint reached.
         upgrade_plugin_savepoint(true, 2013111100, 'tool', 'delivery');
-	}
-	
-	return true;
+    }
+
+    return true;
 }

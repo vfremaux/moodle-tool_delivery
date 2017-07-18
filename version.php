@@ -17,17 +17,21 @@
 /**
  * Version details.
  *
- * @package    local
- * @subpackage ltiprovider
- * @copyright  2013 Valery fremaux
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package     tool_delivery
+ * @category    tool
+ * @author      Valery Fremaux <valery.fremaux@gmail.com>
+ * @copyright   2014 Valery Fremaux (http://www.mylearningfactory.com)
+ * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die;
 
-$plugin->version  = 2013111100;
-$plugin->requires = 2010112400;
+$plugin->version  = 2015032701;
+$plugin->requires = 2016112900;
 $plugin->component = 'tool_delivery';
 $plugin->maturity = MATURITY_STABLE;
+$plugin->release = '3.2.0 Build(2015032701)';
+$plugin->dependencies = array('local_vflibs' => '2015122000');
 
-$plugin->release = 2.4;
+// Non Moodle attributes.
+$plugin->codeincrement = '3.2.0000';
