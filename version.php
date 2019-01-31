@@ -27,11 +27,11 @@
 defined('MOODLE_INTERNAL') || die;
 
 $plugin->version  = 2015032701;
-$plugin->requires = 2018042700;
+$plugin->requires = 2018112800;
 $plugin->component = 'tool_delivery';
 $plugin->maturity = MATURITY_STABLE;
-$plugin->release = '3.5.0 Build(2015032701)';
+$plugin->release = '3.6.0 Build(2015032701)';
 $plugin->dependencies = array('local_vflibs' => '2015122000');
 
 // Non Moodle attributes.
-$plugin->codeincrement = '3.5.0000';
+$plugin->codeincrement = '3.6.0000';
