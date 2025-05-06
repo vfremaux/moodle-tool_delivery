@@ -23,7 +23,7 @@ defined('MOODLE_INTERNAL') || die;
  *
  * A4_embedded delivery report
  */
-require_once($CFG->dirroot.'/local/vflibs/tcpdf/tcpdf.php');
+require_once($CFG->dirroot.'/local/vflibs/tcpdflib.php');
 
 if (!defined('MOODLE_INTERNAL')) {
     die('Direct access to this script is forbidden.'); // It must be included from view.php

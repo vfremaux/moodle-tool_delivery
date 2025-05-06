@@ -23,13 +23,6 @@ defined('MOODLE_INTERNAL') || die;
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-if (is_dir($CFG->dirroot.'/local/adminsettings')) {
-    list($hasconfig, $hassiteconfig, $capability) = local_adminsettings_access();
-} else {
-    // Standard Moodle code
-    $hasconfig = $hassiteconfig = has_capability('moodle/site:config', context_system::instance());
-}
-
 if ($hassiteconfig) {
 
     if (!isset($CFG->localdeliverymethod)) set_config('localdeliverymethod', 'svn');
