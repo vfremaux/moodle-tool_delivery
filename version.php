@@ -30,9 +30,9 @@ $plugin->version  = 2025043000;
 $plugin->requires = 2020060900;
 $plugin->component = 'tool_delivery';
 $plugin->maturity = MATURITY_STABLE;
-$plugin->release = '4.5.0 Build(2025043000)';
+$plugin->release = '4.1.0 Build(2025043000)';
 $plugin->dependencies = array('local_vflibs' => '2015122000');
-$plugin->supported = [403, 405];
+$plugin->supported = [401, 402];
 
 // Non Moodle attributes.
-$plugin->codeincrement = '4.5.0000';
+$plugin->codeincrement = '4.1.0000';

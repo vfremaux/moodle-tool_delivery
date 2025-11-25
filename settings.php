@@ -18,7 +18,6 @@ defined('MOODLE_INTERNAL') || die;
 
 /**
  * @package    tool_delivery
- * @category   tool
  * @author     Valery Fremaux <valery.fremaux@gmail.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -43,24 +42,76 @@ if ($hassiteconfig) {
 
     $temp->add(new admin_setting_heading('codeupdateoptions', get_string('deliveryoptions', 'tool_delivery'), ''));
 
-    $methodoptions = array('cvs' => get_string('cvs', 'tool_delivery'), 'svn' => get_string('svn', 'tool_delivery'));
-    $temp->add(new admin_setting_configselect('tool_delivery/method', get_string('tooldeliverymethod', 'tool_delivery'), get_string('configtooldeliverymethod', 'tool_delivery'), 'svn', $methodoptions));
+    $key = 'tool_delivery/method';
+    $label = get_string('tooldeliverymethod', 'tool_delivery');
+    $desc = get_string('configtooldeliverymethod', 'tool_delivery');
+    $default = 'svn';
+    $methodoptions = [
+        'cvs' => get_string('cvs', 'tool_delivery'),
+        'svn' => get_string('svn', 'tool_delivery'),
+    ];
+    $temp->add(new admin_setting_configselect($key, $label, $desc, $default, $methodoptions));
 
-    $temp->add(new admin_setting_configtext('tool_delivery/prodscriptpath', get_string('tooldeliveryprodscriptpath', 'tool_delivery'), get_string('configtooldeliveryprodscriptpath', 'tool_delivery'), ''));
-    $temp->add(new admin_setting_configtext('tool_delivery/dir', get_string('tooldeliverydir', 'tool_delivery'), get_string('configtooldeliveryprodscriptpath', 'tool_delivery'), ''));
-    $temp->add(new admin_setting_configcheckbox('tool_delivery/directtools', get_string('tooldirectdeliverytools', 'tool_delivery'), get_string('configtooldirectdeliverytools', 'tool_delivery'), ''), 0);
+    $key = 'tool_delivery/prodscriptpath';
+    $label = get_string('tooldeliveryprodscriptpath', 'tool_delivery');
+    $desc = get_string('configtooldeliveryprodscriptpath', 'tool_delivery');
+    $default = '';
+    $temp->add(new admin_setting_configtext($key, $label, $desc, $default));
+
+    $key = 'tool_delivery/dir';
+    $label = get_string('tooldeliverydir', 'tool_delivery');
+    $desc = get_string('configtooldeliveryprodscriptpath', 'tool_delivery');
+    $default = '';
+    $temp->add(new admin_setting_configtext($key, $label, $desc, $default));
+
+    $key = 'tool_delivery/directtools';
+    $label = get_string('tooldirectdeliverytools', 'tool_delivery');
+    $desc = get_string('configtooldirectdeliverytools', 'tool_delivery');
+    $temp->add(new admin_setting_configcheckbox($key, $label, $desc, 0));
 
     $temp->add(new admin_setting_heading('security', get_string('security', 'tool_delivery'), ''));
-    $temp->add(new admin_setting_configcheckbox('tool_delivery/sudo', get_string('tooldeliverysudo', 'tool_delivery'), get_string('configtooldeliverysudo', 'tool_delivery'), ''), 0);
-    $temp->add(new admin_setting_configtext('tool_delivery/sudouser', get_string('tooldeliverysudouser', 'tool_delivery'), get_string('configtooldeliverysudouser', 'tool_delivery'), ''));
 
-    $temp->add(new admin_setting_configcheckbox('tool_delivery/enablesessions', get_string('tooldeliveryenablesessions', 'tool_delivery'), get_string('configtooldeliveryenablesessions', 'tool_delivery'), ''));
+    $key = 'tool_delivery/sudo';
+    $label = get_string('tooldeliverysudo', 'tool_delivery');
+    $desc = get_string('configtooldeliverysudo', 'tool_delivery');
+    $default = 0;
+    $temp->add(new admin_setting_configcheckbox($key, $label, $desc, $default));
 
-    $temp->add(new admin_setting_configtextarea('tool_delivery/sessionopenrecipients', get_string('tooldeliverysessionopenrecipients', 'tool_delivery'), get_string('configtooldeliverysessionopenrecipients', 'tool_delivery'), ''));
+    $key = 'tool_delivery/sudouser';
+    $label = get_string('tooldeliverysudouser', 'tool_delivery');
+    $desc = get_string('configtooldeliverysudouser', 'tool_delivery');
+    $default = '';
+    $temp->add(new admin_setting_configtext($key, $label, $desc, $default));
+
+    $key = 'tool_delivery/enablesessions';
+    $label = get_string('tooldeliveryenablesessions', 'tool_delivery');
+    $desc = get_string('configtooldeliveryenablesessions', 'tool_delivery');
+    $default = '';
+    $temp->add(new admin_setting_configcheckbox($key, $label, $desc, $default));
+
+    $key = 'tool_delivery/sessionopenrecipients';
+    $label = get_string('tooldeliverysessionopenrecipients', 'tool_delivery');
+    $desc = get_string('configtooldeliverysessionopenrecipients', 'tool_delivery');
+    $default = '';
+    $temp->add(new admin_setting_configtextarea($key, $label, $desc, $default));
 
     global $CFG;
     require_once($CFG->dirroot.'/admin/tool/delivery/adminlib.php');
     // $temp->add(new admin_setting_configimage('tool_delivery/reportlogo', get_string('tooldeliveryreportlogo', 'tool_delivery'), get_string('configtooldeliveryreportlogo', 'tool_delivery'), 'tool_delivery'));
-    
+
+    $temp->add(new admin_setting_heading('envswitch', get_string('environmentswitch', 'tool_delivery'), ''));
+
+    $key = 'tool_delivery/prodtostaging';
+    $label = get_string('configprodtostaging', 'tool_delivery');
+    $desc = get_string('configprodtostaging_desc', 'tool_delivery');
+    $default = '';
+    $temp->add(new admin_setting_configtextarea($key, $label, $desc, $default));
+
+    $key = 'tool_delivery/stagingtoprod';
+    $label = get_string('configstagingtoprod', 'tool_delivery');
+    $desc = get_string('configstagingtoprod_desc', 'tool_delivery');
+    $default = '';
+    $temp->add(new admin_setting_configtextarea($key, $label, $desc, $default));
+
     $ADMIN->add('development', $temp);
 }
