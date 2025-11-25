@@ -186,7 +186,7 @@ function tool_delivery_print_text(&$pdf, $text, $x, $y, $l = '', $h = '', $align
  * @param string $text the text to print
  * @return the new Y pos after the log line has been written
  */
-function tool_delivery_print_log(&$pdf, $x, $y, $align, $font='freeserif', $style, $size = 10, $log) {
+function tool_delivery_print_log(&$pdf, $x, $y, $align, $font='freeserif', $style = '', $size = 10, $log = null) {
 
     $pdf->setFont($font, $style, $size);
     $pdf->SetXY($x, $y);
