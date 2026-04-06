@@ -31,7 +31,7 @@ $plugin->requires = 2020060900;
 $plugin->component = 'tool_delivery';
 $plugin->maturity = MATURITY_STABLE;
 $plugin->release = '4.5.0 Build(2025043000)';
-$plugin->dependencies = array('local_vflibs' => '2015122000');
+$plugin->dependencies = array('local_aplpdf' => '2026010100');
 $plugin->supported = [403, 405];
 
 // Non Moodle attributes.
